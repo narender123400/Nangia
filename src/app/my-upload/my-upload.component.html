@@ -1,0 +1,220 @@
+<div class="loader" *ngIf="loader">
+    <div class="outer">
+        <div class="innear">
+            <div class="logo-loading">
+                <span class="circle-one"></span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-container">
+    <div class="master-heading">
+        <div class="main-con">
+            <div class="vl-info">
+                <ul>
+                    <li><p class="light">Records : <span class="black-clr">{{knowcategory?.length}}</span></p></li>
+                    <li class="af-none">
+                        <button mat-button [matMenuTriggerFor]="menu" class="short-button">
+                            <p class="pl30"><i class="material-icons icon">swap_vert</i><span>Sort</span></p>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item  (click)="search.date_filter = 'today';getallknowlist(20,0,'')" >Today</button>
+                            <button mat-menu-item  (click)="search.date_filter = 'week';getallknowlist(20,0,'')" >Last Week</button>
+                            <button mat-menu-item  (click)="search.date_filter = 'current month';getallknowlist(20,0,'')" >Current Month</button>
+                            <button mat-menu-item  (click)="search.date_filter = 'last month';getallknowlist(20,0,'')" >Last Month</button>
+                            <button mat-menu-item>Date Wise</button>
+                            <!-- <button mat-menu-item>Latest</button> -->
+                            <!-- <button mat-menu-item>Oldest</button> -->
+                            <button mat-menu-item>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker1" [(ngModel)]="filter.user_upload_date" (dateChange)="dashboard()"  placeholder="Choose a date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </button>
+                        </mat-menu>
+                    </li>
+                </ul>
+            </div>
+            <!-- <div class="top-search wp30 ml30">
+                <mat-form-field>
+                    <input type="text" placeholder="search" name="master" [(ngModel)]="search.master" (keyup)="filter_array(search.master,all_sug,'search_keys');getallknowlist()" matInput [matAutocomplete]="auto1">
+                    <mat-autocomplete #auto1="matAutocomplete" >
+                        <mat-option *ngFor="let search of fltr_state" value="{{search}}">{{search}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field> 
+            </div> -->
+            
+            
+            <div class=" wp30 ml30">
+                <mat-form-field class="example-full-width wp100 th-inputs search-input  basic-serach">
+                    <div class="th-serach">
+                        <input matInput placeholder="Search" [(ngModel)]="search.master" (keyup)="filter_array(search.master,all_sug,'search_keys');getallknowlist()" matInput [matAutocomplete]="auto1">
+                        <mat-autocomplete #auto1="matAutocomplete" >
+                            <mat-option *ngFor="let search of fltr_state" value="{{search}}">{{search}}</mat-option>
+                        </mat-autocomplete>
+                        <span><i class="material-icons">search</i></span>
+                    </div>
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <!-- PAGINATION START -->
+        <div class="top-pagination">
+            <ul>
+                <li class="refresh-area">
+                    <a class="refresh-btn" mat-raised-button  matTooltip="Refresh" (click)="getallknowlist(pagelimit,start,'refresh')"  ><i class="material-icons"> refresh</i></a>
+                </li>
+                <li><p>Pages {{pagenumber}} Of {{total_page}}</p></li>
+                <li><button mat-button class="left-btn" (click) = "getallknowlist(pagelimit,start-pagelimit)" disabled='{{pagenumber == 1}}'><i class="material-icons">keyboard_arrow_left</i></button></li>
+                <li><input type="text" placeholder="GO TO" [(ngModel)]="pagenumber"  (keyup)="getallknowlist(pagelimit,((pagenumber*pagelimit)-pagelimit))"  min="1" max="{{total_page}}"></li>
+                <li><button mat-button class="right-btn" (click)="getallknowlist(pagelimit,start+pagelimit)" disabled="{{pagenumber == total_page}}"><i class="material-icons">keyboard_arrow_right</i></button></li>
+            </ul>
+        </div>
+        <!--PAGINATION END-->
+        
+        <!-- <div class="refresh">
+            <span class="waves-effect Default"><i (click)="getallknowlist(pagelimit,start,'refresh')" class="material-icons">refresh</i></span>
+        </div> -->
+        
+    </div>
+    
+    <div class="all-container">
+        <!-- <div class="cs-spinner full-page" *ngIf="loader">
+            <div class="outer">
+                <div class="innear">
+                    <mat-spinner></mat-spinner>
+                </div>
+            </div>
+        </div> -->
+        <div class="cs-row">
+            <div class="right-data pl0">
+                <div class="cs-table">
+                    <div class="header sticky-header">
+                        <table class="sno-border">
+                            <tr>
+                                <th class="w30">&nbsp;</th>
+                                <th class="w130">Date</th>
+                                <th class="w250">Upload By</th>
+                                <th>Document Name</th>
+                                <th class="w250">Category</th>
+                                <!-- <th class="w200">Sub Category</th> -->
+                                <th>Description</th>
+                                <th class="w150 text-center">No. of Files</th>
+                                <th class="w150 text-center"> Status</th>
+                                <!-- <th class="w100">Format</th> -->
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="header">
+                        <table class="sno-border">
+                            <tr>
+                                <th class="w30">&nbsp;</th>
+                                <!-- <th class="w130 pb0">
+                                    <mat-form-field class="wp100 th-inputs">
+                                        <input matInput [matDatepicker]="picker" placeholder="Date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </th> -->
+                                <th class="w130">&nbsp;</th>
+                                <th class="w250 pb0">
+                                    <mat-form-field class="example-full-width wp100 th-inputs  search-input search-inputs">
+                                        <div class="th-serach"> 
+                                            <input matInput placeholder="search User Name" name="name"   [(ngModel)]="search.name"  (keyup)="getallknowlist()">
+                                            <span><i class="material-icons">search</i></span>
+                                        </div>
+                                    </mat-form-field>
+                                </th>
+                                
+                                <th class="pb0">
+                                    <mat-form-field class="example-full-width wp100 th-inputs search-input search-inputs">
+                                        <div class="th-serach">
+                                            <input matInput placeholder="search" class="" name="subject"   [(ngModel)]="search.subject"  (input)="getallknowlist()">
+                                            <span><i class="material-icons">search</i></span>
+                                        </div>
+                                    </mat-form-field>
+                                </th>
+                                <th class="w250 pb0">
+                                    <mat-form-field class="example-full-width wp100 th-inputs search-input search-inputs">
+                                        <div class="th-serach">
+                                            <input matInput placeholder="search" class="" name="category_name"   [(ngModel)]="search.category_name"  (keyup)="getallknowlist()">
+                                            <span><i class="material-icons">search</i></span>
+                                        </div>
+                                    </mat-form-field>
+                                    <!-- <mat-form-field class="cs-multi-select th-inputs wp100">
+                                        <mat-select placeholder="Category Name" name="Category" [(ngModel)]="form.category_id" (selectionChange)="getallsubcat()" #Category="ngModel" required>
+                                            <mat-option value="{{catup.id}}" *ngFor="let catup of categoryup;">{{catup.category_name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field> -->
+                                </th>                               
+                                
+                                <th >&nbsp;</th>
+                                <th class="w150 pb0">&nbsp;</th>
+                                <th class="w150 pb0">&nbsp;</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="table-container">
+                        <div class="table-body">
+                            <table class="sno-border">
+                                <tr *ngFor="let know of knowcategory;let i = index;">
+                                    <td class="w30">{{i+1}}</td>
+                                    <td class="w130" > <ng-container *ngIf="know.date_created != '0000-00-00 00:00:00' "> {{know.date_created | date:'dd-MMM-y'}} </ng-container></td>
+                                    <td class="w250">{{know.name}}</td>
+                                    <td> <a routerLink="/knowledge-detail/{{know.id}}" routerLinkActive="active">{{know.subject}}</a></td>
+                                    <td class="w250">{{know.category_name }} {{know.category_name2 ? ' / ' : ''}} {{know.category_name2 }} {{know.category_name3 ? ' / ' : ''}} {{know.category_name3 }} {{ know.category_name4 ? ' / ' : '' }} {{ know.category_name4 }}</td>
+                                    <td >{{know.desc}}</td>
+                                    <td class="w150 text-center"> {{know.total_files}}</td>
+                                    <!-- <td class="w100">{{know.files_type}}</td> -->
+                                    <td class="w150 text-center">{{( know.status == '0' || know.status == '') ? 'Approved': 'Pending' }}
+                                        <div class="action-btns">
+                                            <div class="outer">
+                                                <div class="innear">
+                                                    <a mat-button class="view" routerLink="/knowledge-detail/{{know.id}}" routerLinkActive="active"><i class="material-icons">remove_red_eye</i> view</a>
+                                                    <button *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '3'  "  mat-button class="download" (click)="statusChange( know.id, know.status , i )" ><i class="material-icons"  >done_all</i> 
+                                                        {{(know.status == '0' || know.status == '') ? 'Pending': 'Approved'}}
+                                                    </button>
+                                                    
+                                                    <button *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '3'  "  mat-button class="download" (click)="changeRejectStatus( know.id )" ><i class="material-icons"  >done_all</i>  Reject
+                                                    </button>
+                                                    <button *ngIf="db.datauser.access_level == '1' "  mat-button class="download" (click)="knowladge_delete(know.id)" ><i class="material-icons"  >arrow_downward</i> Delete </button>
+                                                    
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                              <div class="data-not-available" >
+                <div class="outer">
+                  <div class="iinear">
+                    <div class="figure" matRipple>
+                      <div class="header">
+                        <img src="assets/img/data-not-available-header.svg" alt="">
+                      </div>
+                      <div class="description">
+                        <div class="img">
+                          <i class="material-icons">error_outline</i>
+                        </div>
+                        <div class="cs-heading">
+                          <h2>Data Not Available</h2>
+                        </div>
+                        <!-- <div class="psc">
+                          <p>data not available</p>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="h100"></div>
+    

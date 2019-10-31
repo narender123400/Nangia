@@ -1,0 +1,58 @@
+
+<div class="loader" *ngIf="loader">
+  <div class="outer">
+      <div class="innear">
+          <div class="logo-loading">
+              <span class="circle-one"></span>
+              
+          </div>
+      </div>
+  </div>
+</div>
+<div class="main-container">
+  <div class="master-heading">
+    <div class="vl-info">
+      <ul>
+        <!-- <li><p class="light">120 Documents allready added</li> -->
+          
+        </ul>
+      </div>
+    </div>
+    <div class="cs-container ">
+      <div class="cs-row">
+        <div class="right-data pr20">
+          <div class="contst">
+            <div class="cs-heading">
+              <h2>Tag List</h2>
+            </div>
+            
+            <div class="cs-divider pt10">
+              <mat-divider></mat-divider>
+            </div>
+            <div class="form-field">
+              <div class="row">
+                <div class="col-12">
+                  <div class="document-list-multi">
+                    <ul>
+                      <li *ngFor="let val of knowcategory;let i = index;">
+                        {{val.subject}}
+                        <ul class="inner-document">
+                          <li>
+                            <span *ngFor="let tag of val.desc;let x = index;">{{tag}}</span>
+                            <!-- <span>Document 1</span> -->
+                            <!-- <span>Document 1</span>  -->
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="h100"></div>
+    </div>

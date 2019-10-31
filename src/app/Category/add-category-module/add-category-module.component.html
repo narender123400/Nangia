@@ -1,0 +1,30 @@
+<div class="modal-heading">
+  <h2 mat-dialog-title >ADD CATEGORY
+    <button class="modal-close" mat-dialog-close mat-button><i class="material-icons">close</i></button>
+  </h2>
+</div>
+
+
+<mat-dialog-content class="mat-typography">
+  <div class="modal-content ">
+      <form name="form" (ngSubmit)="d.form.valid && savecat()" #d="ngForm" novalidate>
+    <div class="form-field">
+      <div class="row">
+        <div class="col-12">
+          <div class="control-field col-12 pr70 edit-input">
+            <mat-form-field class="example-full-width cs-input">
+              <input matInput placeholder="Enter Category Name" name="category_name" [(ngModel)]="form.category_name" #category_name="ngModel" required>
+            </mat-form-field>
+            <mat-error *ngIf="d.submitted && !category_name.valid" >Category Name is required</mat-error>
+            <div class="plus-btn">
+              <button mat-raised-button color="warn">
+                <i class="material-icons">add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+</mat-dialog-content>

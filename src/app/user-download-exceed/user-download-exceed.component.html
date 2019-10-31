@@ -1,0 +1,139 @@
+
+<div class="loader" *ngIf="loader">
+  <div class="outer">
+    <div class="innear">
+      <div class="logo-loading">
+        <span class="circle-one"></span>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-container">
+  <div class="master-heading">
+    <div class="main-con">
+      <div class="vl-info">
+        <ul>
+          <li><p class="light">Records : <span class="black-clr">{{user?.length}}</span></p></li>
+          <li class="af-none"><p class="pl30"><i class="material-icons icon">swap_vert</i><span>Sort</span></p></li>
+        </ul>
+      </div>
+      
+      
+      <div class=" wp30 ml30">
+        <mat-form-field class="example-full-width wp100 th-inputs search-input basic-serach">
+          <div class="th-serach">
+            <input matInput placeholder="Search" [(ngModel)]="search.master"  (keyup.enter)="GetUserList()">
+            <span><i class="material-icons">search</i></span>
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <div class="top-search wp30 ml30">
+      <input type="text" placeholder="SEARCH. . ."  [(ngModel)]="search.master"  (keyup.enter)="GetUserList()">
+      <i class="material-icons">search</i>
+    </div> -->
+    
+    <!-- PAGINATION START -->
+    <div class="top-pagination">
+      <ul>
+        <li class="refresh-area">
+          <a class="refresh-btn" mat-raised-button  matTooltip="Refresh" (click)="GetUserList(pagelimit,start,'refresh')"><i class="material-icons"> refresh</i></a>
+        </li>
+        <li><p>Pages {{pagenumber}} Of {{total_page}}</p></li>
+        <li><button mat-button class="left-btn" (click) = "GetUserList(pagelimit,start-pagelimit)" disabled='{{pagenumber == 1}}'><i class="material-icons">keyboard_arrow_left</i></button></li>
+        <li><input type="text" placeholder="GO TO" [(ngModel)]="pagenumber"  (keyup.enter)="GetUserList(pagelimit,((pagenumber*pagelimit)-pagelimit))" min="1" max="{{total_page}}"></li>
+        <li><button mat-button class="right-btn" (click)="GetUserList(pagelimit,start+pagelimit)" disabled="{{pagenumber == total_page}}"><i class="material-icons">keyboard_arrow_right</i></button></li>
+      </ul>
+    </div>
+    <!--PAGINATION END-->
+    
+    <!-- <div class="refresh">
+      <span class="waves-effect Default"><i (click)="GetUserList(pagelimit,start,'refresh')" class="material-icons">refresh</i></span>
+    </div> -->
+  </div>
+  
+  <div class="all-container">
+    <!-- <div class="cs-spinner full-page" *ngIf="loader">
+      <div class="outer">
+        <div class="innear">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+    </div> -->
+    <div class="cs-row">
+      <div class="right-data pl0">
+        <div class="cs-table">
+          <div class="progress" *ngIf="progress">
+            <div class="indeterminate"></div>
+          </div>
+          <div class="header sticky-header">
+            <table class="sno-border">
+              <tr>
+                <th class="w30">&nbsp;</th>
+                <th class="w150 text-center">UserId</th>
+                <th class="w150 text-center">Name</th>
+                <th class="w180 text-center">Total Download </th>
+                <th class="w180 text-center">Today Download </th>
+                <!-- <th class="w180 text-center">Free Download  </th> -->
+                
+              </tr>
+            </table>
+          </div>
+          <div class="table-container">
+            <div class="table-body">
+              <table class="sno-border">
+                <tr *ngFor="let row of user; let i = index;">
+                  <td class="w30  text-center"></td>
+                  <td class="w150 text-center">{{i+1}}</td>
+                  <td class="w150 text-center"><a class="link" mat-button routerLink="/edituser/{{row.id}}" routerLinkActive="active">{{row.name}}</a></td>
+                  <!-- <td class="w220  text-center">{{row.department}}</td> -->
+                  <!-- <td class="w180  text-center">{{row.rolename}}</td> -->
+                  <!-- <td class="w180  text-center">{{row.mobile}}</td> -->
+                  <td class="w180  text-center">{{row.total_download }}</td>
+                  <td class="w180  text-center">{{row.toady_download }}
+                    <!-- <td class="w180  text-center">{{row.free_download  }} -->
+                      
+                      <div class="action-btns">
+                        <div class="outer">
+                          <div class="innear">
+                            <button mat-button class="download" (click)="update_limit( row.id)"><i class="material-icons">done_all</i> Approve</button>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="data-not-available" >
+            <div class="outer">
+              <div class="iinear">
+                <div class="figure" matRipple>
+                  <div class="header">
+                    <img src="assets/img/data-not-available-header.svg" alt="">
+                  </div>
+                  <div class="description">
+                    <div class="img">
+                      <i class="material-icons">error_outline</i>
+                    </div>
+                    <div class="cs-heading">
+                      <h2>Data Not Available</h2>
+                    </div>
+                    <!-- <div class="psc">
+                      <p>data not available</p>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h100"></div>
+    

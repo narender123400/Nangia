@@ -1,0 +1,103 @@
+
+<div class="loader" *ngIf="loader">
+  <div class="outer">
+      <div class="innear">
+          <div class="logo-loading">
+              <span class="circle-one"></span>
+              
+          </div>
+      </div>
+  </div>
+</div>
+<div class="main-container">
+  <div class="all-container left-right-space">
+    <mat-accordion>
+      <ng-container *ngFor="let child1 of allCat;let a =index; ">
+        
+        <mat-expansion-panel *ngIf="child1.child.length > 0">
+          
+          
+          <mat-expansion-panel-header >
+            <mat-panel-title >
+              <p>    {{child1.category_name }}</p>
+            </mat-panel-title>
+          </mat-expansion-panel-header> 
+          
+          <ng-container *ngFor="let child2 of child1.child;let a2 =index; ">
+            
+            <mat-expansion-panel class="inner-panel" *ngIf="child2.child.length > 0">
+              
+              <mat-expansion-panel-header >
+                <mat-panel-title >
+                  <p> {{child2.category_name }} </p>
+                </mat-panel-title>
+              </mat-expansion-panel-header> 
+              
+              <ng-container *ngFor="let child3 of child2.child;let a3 =index; ">
+                
+                <mat-expansion-panel class="inner-panel" *ngIf="child3.child.length > 0">
+                  <mat-expansion-panel-header >
+                    <mat-panel-title >
+                      <p> {{child3.category_name }}</p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header> 
+                  
+                  <mat-option class="cs-check-list check-list-height" *ngFor="let child4 of child3.child;let a3 =index; ">
+                    {{child4.category_name }}
+                    
+                    <a class="del-btn"  (click)="deleteFunction(child4.id,'4')" *ngIf="child4.exist != 'true' "><i class="material-icons">delete_sweep</i> Delete</a>
+                    <a class="del-btn"  *ngIf="child4.exist == 'true' ">Reserved</a>
+                  </mat-option>
+                  
+                </mat-expansion-panel>
+                
+                <mat-option class="cs-check-list check-list-height"  *ngIf="child3.child.length == 0">
+                  {{child3.category_name }}
+                  
+                  <a class="del-btn"  (click)="deleteFunction(child3.id,'3')" *ngIf="child3.exist != 'true' "><i class="material-icons" >delete_sweep</i> Delete</a>
+                  <a class="del-btn"  *ngIf="child3.exist == 'true' ">Reserved</a>
+                </mat-option>
+                
+                
+              </ng-container>
+              
+              
+            </mat-expansion-panel>
+            
+            <mat-option class="cs-check-list check-list-height"  *ngIf="child2.child.length == 0">
+              {{ child2.category_name }}
+              
+              <a class="del-btn"  (click)="deleteFunction(child2.id,'2')" *ngIf="child2.exist != 'true' "><i class="material-icons" >delete_sweep</i> Delete</a>
+              <a class="del-btn"  *ngIf="child2.exist == 'true' ">Reserved</a>
+            </mat-option>
+            
+          </ng-container>
+          
+          
+        </mat-expansion-panel>
+        
+        <mat-option class="cs-check-list" *ngIf="child1.child.length == 0">
+          {{child1.category_name }}
+          
+          <a class="del-btn" (click)="deleteFunction(child1.id,'1')" *ngIf="child1.exist != 'true' "><i class="material-icons"   >delete_sweep</i> Delete</a>
+          <a class="del-btn"  *ngIf="child1.exist == 'true' ">Reserved</a>
+        </mat-option>
+        
+      </ng-container>
+      
+      
+      <!-- <mat-expansion-panel>
+        <mat-expansion-panel-header >
+          <mat-panel-title >
+            <p>Computer</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header> 
+        <mat-option class="check-list">
+          Category Name
+        </mat-option>
+      </mat-expansion-panel> -->
+    </mat-accordion>
+  </div>
+</div>
+
+<div class="h100"></div>

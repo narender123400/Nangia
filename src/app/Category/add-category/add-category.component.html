@@ -1,0 +1,129 @@
+<div class="main-container">
+  <div class="master-heading">
+    <div class="vl-info">
+      <ul>
+        <li><p class="light">120 Documents allready added</li>
+          <li class="af-none">
+            <p>Mandatory fields ( <sup class="red-clr"> * </sup> )</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="cs-container">
+      <div class="cs-row">
+        <div class="right-data left-right-space-cenetr">
+          <div class="contst">
+            <div class="cs-heading">
+              <h2>Category Master</h2>
+            </div>
+            
+            <div class="cs-divider pt10">
+              <mat-divider></mat-divider>
+            </div>
+            <div class="form-field">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <!-- <div class="control-field col-12 pr70">
+                      <mat-form-field class="cs-multi-select">
+                        <mat-select placeholder="Category Name"  name="id" [(ngModel)]="form.id" (selectionChange)="categoryChange( category.value )" #category="ngModel">
+                            <mat-option value="0">none</mat-option>                            
+                          <mat-option  [value]="catup.id" *ngFor="let catup of categoryup;"  >{{catup.category_name}}</mat-option>                         
+                        </mat-select>
+                      </mat-form-field>                    
+                      
+                      <div class="plus-btn">
+                        <button mat-raised-button color="warn" (click)="openDialog()">
+                          <i class="material-icons">add</i>
+                        </button>
+                      </div>
+                      
+                    </div> -->
+                    
+                    <div class="control-field col-12 pr70" *ngFor = "let x of category_array;let a = index">
+                      <mat-form-field class="cs-multi-select" >
+                        <mat-select placeholder="Category Name" [name]="'selected_parent'+a" [(ngModel)]="x.selected_parent" >
+                            <mat-option value="0">none</mat-option>                            
+                          <mat-option  [value]="catup.id" *ngFor="let catup of x.child;"  (click)="categoryChange( catup.id,a+1 )" >{{catup.category_name}} </mat-option>                        
+                        </mat-select>
+
+                      </mat-form-field>       
+                     
+                      
+                      <div class="plus-btn" *ngIf=" a < 3 ">
+                        <button mat-raised-button color="warn"  (click)="openDialog1(a)" *ngIf="x.selected_parent">
+                          <i class="material-icons" >add </i>
+                        </button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="contst mt16">
+            <div class="cs-heading">
+              <h2>SubCategory Master</h2>
+            </div>
+            
+            <div class="cs-divider pt10">
+              <mat-divider></mat-divider>
+            </div>
+            <div class="form-field">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="control-field col-12 pr70">
+                      <mat-form-field class="cs-multi-select">
+                        <mat-select placeholder="Sub Category">
+                          <mat-option>none</mat-option>
+                          <mat-option *ngFor="let subcat of subcategoryup;">{{subcat.category_name}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <div class="plus-btn">
+                        <button mat-raised-button color="warn" (click)="openDialog1()">
+                          <i class="material-icons">add</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               <div class="col-12">
+                  <div class="row ml10 mr10">
+                    <div class="control-field col-12">
+                      <mat-form-field class="example-full-width cs-input">
+                        <input matInput placeholder="Add New Sub-Category">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>-
+              </div>
+            </div>
+          </div> -->
+         <!-- <div class="contst mt16 pt0">
+            <div class="form-field">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="control-field col-12">
+                      <mat-form-field class="example-full-width cs-input">
+                        <input matInput placeholder="Enter Category Name">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -
+          <div class="cs-btn mt16 text-right">
+            <div class="in-btn">
+              <button mat-raised-button color="primary" routerLink="">SAVE</button>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+    
+    <div class="h100"></div>

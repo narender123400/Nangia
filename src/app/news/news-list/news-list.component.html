@@ -1,0 +1,245 @@
+<div class="loader" *ngIf="loader">
+  <div class="outer">
+      <div class="innear">
+          <div class="logo-loading">
+              <span class="circle-one"></span>
+              
+          </div>
+      </div>
+  </div>
+</div>
+<div class="main-container">
+  <div class="master-heading">
+    <div class="main-con">
+      <div class="vl-info">
+        <ul>
+          <li><p class="light">Records : <span class="black-clr">{{user?.length}}</span></p></li>
+          <!-- <li class="af-none"><p class="pl30"><i class="material-icons icon">swap_vert</i><span>Sort</span></p></li> -->
+        </ul>
+      </div>
+      <!-- <a routerLink="/newsdetails">newsdetails</a> -->
+      
+      <div class=" wp30 ml30">
+        <mat-form-field class="example-full-width wp100 th-inputs search-input basic-serach">
+          <div class="th-serach">
+            <input matInput placeholder="Search" [(ngModel)]="search.master"  (keyup.enter)="GetUserList()">
+            <span><i class="material-icons">search</i></span>
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <div class="top-search wp30 ml30">
+      <input type="text" placeholder="SEARCH. . ."  [(ngModel)]="search.master"  (keyup.enter)="GetUserList()">
+      <i class="material-icons">search</i>
+    </div> -->
+    
+    <!-- PAGINATION START -->
+    <div class="top-pagination">
+      <ul>
+        <li class="refresh-area">
+          <a class="refresh-btn" mat-raised-button  matTooltip="Refresh" (click)="GetUserList(pagelimit,start,'refresh')"><i class="material-icons"> refresh</i></a>
+        </li>
+        <li><p>Pages {{pagenumber}} Of {{total_page}}</p></li>
+        <li><button mat-button class="left-btn" (click) = "GetUserList(pagelimit,start-pagelimit)" disabled='{{pagenumber == 1}}'><i class="material-icons">keyboard_arrow_left</i></button></li>
+        <li><input type="text" placeholder="GO TO" [(ngModel)]="pagenumber"  (keyup.enter)="GetUserList(pagelimit,((pagenumber*pagelimit)-pagelimit))"  min="1" max="{{total_page}}"></li>
+        <li><button mat-button class="right-btn" (click)="GetUserList(pagelimit,start+pagelimit)" disabled="{{pagenumber == total_page}}"><i class="material-icons">keyboard_arrow_right</i></button></li>
+      </ul>
+    </div>
+    <!--PAGINATION END-->
+    
+    <!-- <div class="refresh">
+      <span class="waves-effect Default"><i (click)="GetUserList(pagelimit,start,'refresh')" class="material-icons">refresh</i></span>
+    </div> -->
+  </div>
+  
+  <div class="all-container">
+    <!-- <div class="cs-spinner full-page" *ngIf="loader">
+      <div class="outer">
+        <div class="innear">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+    </div> -->
+    <div class="cs-row">
+      
+      <div class="blog"   >
+        <div class="blog-news" *ngFor="let row of user;">
+         <div class="blog-image">
+            <img src="{{db.myurl}}/uploads/{{row.profile_img}}">
+         </div>
+          
+          <div class="blog-content">
+            <h4>{{row.subject}}</h4>
+            
+            <div class="all-con">
+              <div class="one title-box  ">
+                  <span>Total Files </span>
+                <p class="color-1"> {{row.total_files}}</p>
+              </div>
+              
+              <div class="two status color-3">
+                  <span>Status </span>
+                <p> {{row.status == '0'  ? 'Active' : 'Deactive' }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay">
+            <div class="text">
+              <a  class="view" routerLink="/newsdetails">View</a>
+              <button class="delete" (click)="delete_user(i,row.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- <div class="blog-news">
+          <img src="assets/img/apple.jpg">
+          
+          <div class="blog-content">
+            <h4>Apple to change antenna structure in 2019 iPhones</h4>
+            
+            <div class="all-con">
+              <div class="one title-box ">
+                <p><span>Total Files :</span>  1 </p>
+              </div>
+              
+              <div class="two status">
+                <p><span>Status :</span> Active</p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay">
+            <div class="text">
+              <a  routerLink="/newsdetails">View</a>
+              <button>Delete</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="blog-news">
+          <img src="assets/img/apple-2.jpg">
+          
+          <div class="blog-content">
+            <h4>How Apple plans to make iPhone users ‘dump’ WhatsApp</h4>
+            
+            <div class="all-con">
+              <div class="one title-box ">
+                <p><span>Total Files :</span>  1 </p>
+              </div>
+              
+              <div class="two status">
+                <p><span>Status :</span> Active</p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay">
+            <div class="text">
+              <a  routerLink="/newsdetails">View</a>
+              <button>Delete</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="blog-news">
+          <img src="assets/img/company.jpg">
+          
+          <div class="blog-content">
+            <h4>Cognizant: Mighty growth engine comes to near halt</h4>
+            
+            <div class="all-con">
+              <div class="one title-box ">
+                <p><span>Total Files :</span>  1 </p>
+              </div>
+              
+              <div class="two status">
+                <p><span>Status :</span> Active</p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay">
+            <div class="text">
+              <a  routerLink="/newsdetails">View</a>
+              <button>Delete</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="blog-news">
+          <img src="assets/img/google.jpg">
+          
+          <div class="blog-content">
+            <h4>Google’s ‘building a helpful Google</h4>
+            
+            <div class="all-con">
+              <div class="one title-box ">
+                <p><span>Total Files :</span>  1 </p>
+              </div>
+              
+              <div class="two status">
+                <p><span>Status :</span> Active</p>
+              </div>
+            </div>
+          </div>
+          <div class="overlay">
+            <div class="text">
+              <a  routerLink="/newsdetails">View</a>
+              <button>Delete</button>
+            </div>
+          </div>
+        </div> -->
+        
+      </div>
+      
+      <div class="right-data">
+        
+        
+        <div class="cs-table" style="display: none" >
+          <div class="progress" *ngIf="progress">
+            <div class="indeterminate"></div>
+          </div>
+          <div class="header sticky-header">
+            <table class="sno-border">
+              <tr>
+                <th class="w10">&nbsp;</th>
+                <th class="w50 text-center">S.no</th>
+                <th class="w300 text-center">Profile Img</th>
+                <th class="w180 text-center">Title</th>
+                <th >Desc</th>
+                <th class="w110 text-center">Total Files</th>
+                <th class="w150 text-center">Status</th>
+              </tr>
+            </table>
+          </div>
+          <div class="table-container">
+            <div class="table-body">
+              <table class="sno-border">
+                <tr *ngFor="let row of user; let i = index;">
+                  <td class="w10  text-center"></td>
+                  <td class="w50 text-center">{{i+1}}</td>
+                  <td class="w300 text-center"> <img src="{{db.myurl}}/uploads/{{row.profile_img}}" style="\width: 220px; height: 140px;"> </td>
+                  <td class="w180  text-center">{{row.subject}}</td>
+                  <td >{{row.desc}}</td>
+                  <td class="w110 text-center">{{row.total_files}}</td>
+                  <td class="w150  text-center">{{row.status == '0'  ? 'Active' : 'Deactive' }}
+                    <div class="action-btns">
+                      <div class="outer" *ngIf="db.datauser.access_level == '1' ">
+                        <div class="innear">
+                          <!-- <a mat-button class="view" mat-button routerLink="/edituser/{{row.id}}" routerLinkActive="active"><i class="material-icons">remove_red_eye</i> view</a> -->
+                          <!-- <a mat-button class="edit" routerLink="/edituser/{{row.id}}" routerLinkActive="active" (click)="edit_user(i)"><i class="material-icons">edit</i> Edit</a> -->
+                          <button mat-button class="delete" (click)="delete_user(i,row.id)"><i class="material-icons">delete_sweep</i> Delete</button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h100"></div>
+  
+  
+  
+  

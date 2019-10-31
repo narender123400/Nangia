@@ -1,0 +1,137 @@
+<div class="main-container">
+  <div class="master-heading">
+    <div class="vl-info">
+      <ul>
+          <li class="af-none">
+            <p>Mandatory fields ( <sup class="red-clr"> * </sup> )</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="cs-container ">
+      <div class="cs-row">
+        <div class="right-data pr20">
+            <form name="form" (ngSubmit)="f.form.valid && submituser(f)" #f="ngForm" novalidate>
+          <div class="contst">
+            <div class="cs-heading">
+              <h2>Add User</h2>
+            </div>
+            
+            <div class="cs-divider pt10">
+              <mat-divider></mat-divider>
+            </div>
+            <div class="form-field">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="control-field error col-4">
+                      <mat-form-field class="example-full-width cs-input">
+                        <input matInput placeholder="Name" name="name" [(ngModel)] = "form.name" #name="ngModel"  required>
+                      </mat-form-field>
+                       <mat-error *ngIf="f.submitted && !name.valid" >Name is required</mat-error> 
+                    </div>
+                    <div class="control-field col-4">
+                      <mat-form-field class="example-full-width cs-input" >
+                        <input matInput placeholder="Email"  name="email" [(ngModel)] = "form.email">
+                      </mat-form-field>
+                      <!-- <mat-error *ngIf="f.submitted && !email.valid" >Email is required</mat-error> -->
+                    </div>
+                    <div class="control-field col-4">
+                      <mat-form-field class="example-full-width cs-input" >
+                        <input matInput placeholder="Mobile N0" name="mobile" [(ngModel)] = "form.mobile" #mobile="ngModel" required>
+                      </mat-form-field>
+                      <!-- <mat-error *ngIf="f.submitted && !mobile.valid" >Mobile No. is required</mat-error> -->
+                    </div>
+                    <div class="control-field col-4">
+                      <mat-form-field class="example-full-width cs-input">
+                        <input matInput placeholder="Landline N0" name="landline" [(ngModel)] = "form.landline" #landline = "ngModel">
+                      </mat-form-field>
+                    </div>
+                    <div class="control-field col-4">
+                        <mat-form-field class="example-full-width cs-input">
+                            <input matInput placeholder = "Department" name = "department"  [(ngModel)] = "form.department" #department = "ngModel" required>
+                            <mat-autocomplete #department="matAutocomplete">
+                                <mat-option>
+                                    <small></small>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <!-- <mat-error *ngIf="f.submitted && !department.valid" >department is required</mat-error>  -->
+                    </div>
+                    <div class="control-field error col-4">
+                      <mat-form-field class="cs-multi-select" >
+                        <mat-select placeholder="Role"  [(ngModel)]="form.access_level" name="access_level">
+                            <!-- <mat-option value="0">Select Role---</mat-option>                             -->
+                          <mat-option [value]="roles.id" *ngFor="let roles of role;" >{{roles.name}}</mat-option>                        
+                        </mat-select>
+                      </mat-form-field>     
+                   </div>
+
+                   <div class="control-field col-4" *ngIf="form.access_level == '2' ">
+                    <mat-form-field class="example-full-width cs-input" >
+                      <input matInput placeholder="Download Limt" name="default_download_limit" [(ngModel)] = "form.default_download_limit" #default_download_limit="ngModel" [required]="form.access_level == '2' ? true : false "  >
+                    </mat-form-field>
+                  </div>
+
+
+                   <div class="control-field error col-4" *ngIf="form.access_level == '2' ">
+                    <mat-form-field class="cs-multi-select" >
+                      <mat-select placeholder="Approver"  [(ngModel)]="form.approver" name="approver">
+                          <mat-option value="">Select Approver---</mat-option>                            
+                        <mat-option [value]="val.id" *ngFor="let val of approvers;" >{{val.name}}</mat-option>                        
+                      </mat-select>
+                    </mat-form-field>       
+                  </div>
+
+                  
+                    <!-- <div class="control-field col-4">
+                      <mat-form-field class="example-full-width cs-input">
+                        <input matInput placeholder="Password" name="password" [(ngModel)] = "form.password" #password = "ngModel">
+                        <div class="password-icon active">
+                          <div class="show-p"><button mat-button><i class="material-icons">visibility</i></button></div>
+                          <div class="hide-p"><button mat-button><i class="material-icons">visibility_off</i></button></div>
+                      </div>
+                      </mat-form-field>
+                    </div> -->
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="cs-heading pt20">
+              <h2>Document Rights</h2>
+            </div>
+            
+            <div class="cs-divider pt10 pb10">
+              <mat-divider></mat-divider>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="work-process">
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" name="add_document" [(ngModel)]="form.add_document" #add_document="ngModel"  color="warn">ADD DOCUMENT</mat-checkbox>
+                        <!-- <mat-checkbox class="example-margin" name="edit_document"     [(ngModel)]="form.edit_document" #edit_document="ngModel" color="warn">EDIT DOCUMENT</mat-checkbox> -->
+                        <!-- <mat-checkbox class="example-margin" name="delete_document"   [(ngModel)]="form.delete_document" #delete_document="ngModel" color="warn">DELETE DOCUMENT</mat-checkbox> -->
+                        <mat-checkbox class="example-margin" name="download_document" [(ngModel)]="form.download_document" #download_document="ngModel" color="warn">Download DOCUMENT</mat-checkbox>
+                        <mat-checkbox class="example-margin" name="news_uploader"     [(ngModel)]="form.news_uploader" #news_uploader="ngModel" color="warn">NEWS UPLOAD</mat-checkbox>
+                      </section>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cs-btn mt32 text-right" [ngClass]="{loading: sendingData}">
+            <div class="in-btn">
+              <button mat-raised-button color="primary"   [attr.disabled]="sendingData">Save</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="h100"></div>
