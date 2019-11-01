@@ -1,0 +1,74 @@
+
+<header >
+  <div class="company-logo">
+      
+      <img src="assets/img/company_logo.png" class="active-logo" alt="">
+      <!-- <img src="assets/img/logo.png" class="defualt-logo" alt=""> -->
+      
+      <div id="nav-icon2" (click)="toggleHeader()" matRipple>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>    
+  </div>
+  
+  <div class="top-header">
+      <div class="logo">
+        <img src="assets/img/Company_logo.png" class="active" alt="">
+          <!-- <h1>Lighting Revolution</h1> -->
+      </div>
+      <ul class="top-nav">
+          <li><a href="#." mat-button><img src="assets/img/ic_setting.svg" alt=""></a></li>
+          <li class="mat-drop">
+             <button mat-button [matMenuTriggerFor]="profile" > <img src="assets/img/profile.jpg" alt=""> {{ db.datauser.name}}</button>
+          </li>
+          <li class="master-btn">
+              <button mat-raised-button [matMenuTriggerFor]="addnew" color="accent">add new</button>            
+          </li>
+      </ul>
+      <mat-menu x-position="before" #profile="matMenu">
+          <a mat-menu-item  routerLink="/profile">Profile</a>
+          <a mat-menu-item *ngIf="db.datauser.access_level == '2' && db.datauser.free_download > '0' ">Download Limit - {{db.datauser.free_download }}</a>
+          <a mat-menu-item  *ngIf="db.datauser.access_level == '2' && db.datauser.free_download == '0' && db.datauser.toady_download_request == '0' " (click)="limitExceed()">Upgrade Limit ( {{db.datauser.free_download}} / 25 ) </a>
+          <a mat-menu-item  *ngIf="db.datauser.access_level == '2' && db.datauser.free_download == '0' && db.datauser.toady_download_request == '1' " >Wait for Approve ( {{db.datauser.free_download}} / 25 ) </a>
+          <a mat-menu-item (click)="logout()">Log Out</a>
+      </mat-menu>
+      
+      <mat-menu x-position="before" #addnew="matMenu">
+          <a  *ngIf="db.datauser.access_level  == '1'  || db.datauser.add_document == '1'" mat-menu-item routerLink="/knowledge-doc" routerLinkActive="active">Upload Document</a>
+          <a *ngIf="db.datauser.access_level  == '1' || db.datauser.add_user == '1'" mat-menu-item routerLink="/add-user" routerLinkActive="active">User</a>
+          <a *ngIf="db.datauser.access_level  == '1' || db.datauser.add_category  == '1'" mat-menu-item routerLink="/add-category" routerLinkActive="active">Category</a>
+          <a *ngIf="db.datauser.access_level  == '1' || db.datauser.news_uploader ==  '1' " mat-menu-item routerLink="/news-add" routerLinkActive="active">News</a>
+      </mat-menu>
+  </div>
+  
+  <div class="navigations">
+      <ul>
+          <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+          <li><a routerLink="/knowledge-list" routerLinkActive="active">Knowledge Base</a></li>
+          <li ><a routerLink="/my-upload" routerLinkActive="active">Approval Pending</a></li>
+          <li *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '3'"><a routerLink="/reject-knowledge" routerLinkActive="active">Reject Knowledge</a></li>
+          <li *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '3'"><a routerLink="/user-download-list" routerLinkActive="active">Download History</a></li>
+          <li  *ngIf="db.datauser.access_level == '2'"><a routerLink="/my-download" routerLinkActive="active">My Download</a></li>
+
+          <li *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '3' "><a routerLink="/download-exceed" routerLinkActive="active">Usage Information</a></li>
+          <li *ngIf="db.datauser.access_level == '1'"><a routerLink="/category-list" routerLinkActive="active">Category</a></li>
+          <li *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '2'  || db.datauser.access_level == '3'   "><a routerLink="/tags" routerLinkActive="active">Tags</a></li>
+          <li *ngIf="db.datauser.access_level == '1' "><a routerLink="/user-list" routerLinkActive="active">Users</a></li>
+          <li  *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '2'  || db.datauser.access_level == '3'   "><a routerLink="/news-lisit" routerLinkActive="active">News Room</a></li>
+          <li  *ngIf="db.datauser.access_level == '1' "><a routerLink="/recycle" routerLinkActive="active">Recycle Knowledge</a></li>
+          <li  *ngIf="db.datauser.access_level == '1' "><a routerLink="/reports" routerLinkActive="active">Reports</a></li>
+          <!-- <li *ngIf="show_tabs == '2'"><a routerLink="/mydocument" routerLinkActive="active">My Document</a></li> -->
+      </ul>
+  </div>
+  
+</header>
+
+
+<footer>
+  <img src="assets/img/abacusdesk.png" alt="">
+</footer>
+

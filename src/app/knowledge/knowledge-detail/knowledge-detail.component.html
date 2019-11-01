@@ -1,0 +1,278 @@
+<div class="main-container">
+    <div class="master-heading bcspace">
+        <div class="back-btn">
+            <a mat-button routerLink="/knowledge-list" routerLinkActive="active"><i class="material-icons">arrow_right_alt</i></a>
+        </div>
+        <div class="vl-info pl0">
+            <ul>
+                <li><p class="af-none">{{formm.date_created |  date:'dd-MMM-y'}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cs-container">
+            <div class="cs-row" >
+                <div class="right-data">
+                    <div class="row">
+                        
+                        <div class="col-8">
+                            <div class="col-12">
+                                <div class="contst">
+                                    <div class="cs-heading">
+                                        <h2>{{formm.subject}}</h2>
+                                    </div>
+                                    <div class="cs-divider pt10">
+                                        <mat-divider></mat-divider>
+                                    </div>
+                                    <!-- <div class="user-deatils pt10">
+                                        <div class="row">
+                                            <div class="col-6 pr10">
+                                                <div class="detail-thumnail right-border">
+                                                    <table>
+                                                        <tr>
+                                                            <th class="w200">Crested By</th>
+                                                            <td class="w100 text-center">:   {{formm.date_created}}</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Category</th>
+                                                            <td class="text-center">: {{formm.category_name}}</td>
+                                                            <td></td>
+                                                        </tr> -->
+                                                        <!-- <tr>
+                                                            <th>Sub Category</th>
+                                                            <td class="text-center">: {{formm.sub_category_name}}</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Total File</th>
+                                                            <td class="text-center">:{{formm.total_downloads}} </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 pl10">
+                                                <div class="detail-thumnail">
+                                                    <table>
+                                                        <tr>
+                                                            <th class="w200">Total Size</th>
+                                                            <td class="w100 text-center">{{formm.file_size}}</td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="meeting-doc">
+                                                <div class="tab-1 bo-1">
+                                                    <span>Uploaded By</span>
+                                                    <p>Suraj Nangia</p>
+                                                </div>
+                                                
+                                                <div class="tab-1 bo-1">
+                                                    <span>Category Name</span>
+                                                    <p>Laptop</p>
+                                                </div>
+                                                
+                                                <div class="tab-1 bo-1">
+                                                    <span>Total Downloads</span>
+                                                    <p>0</p>
+                                                </div>
+                                                <div class="tab-1 bo-1">
+                                                    <span>Total Size</span>
+                                                    <p>0</p>
+                                                </div>
+                                                
+                                                <div class="tab-1 bo-1 color-3">
+                                                    <span>Status</span>
+                                                    <p>Approved</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="side-by-side mt10" style="display: none;" >
+                                                <div class="row mr0 ml0">
+                                                    <div class="figure grid-three">
+                                                        <p>Uploaded By</p>
+                                                        <div class="cs-edit-input ">
+                                                            <mat-form-field class="example-full-width">
+                                                                <input matInput type="text" readonly="" value="{{formm.uploaded_by}}">
+                                                            </mat-form-field>
+                                                            <div class="edit-icon">
+                                                                <button mat-button class="save"><i class="material-icons green-text" title="EDIT">save</i></button>
+                                                                <button mat-button class="edit"><i class="material-icons blue-text" title="EDIT">create</i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="figure grid-three">
+                                                        <p>Category Name</p>
+                                                        <div class="cs-edit-input ">
+                                                            <mat-form-field class="example-full-width">
+                                                                <input matInput type="text" readonly="" value="{{formm.category_name}}">
+                                                            </mat-form-field>
+                                                            <div class="edit-icon">
+                                                                <button mat-button class="save"><i class="material-icons green-text" title="EDIT">save</i></button>
+                                                                <button mat-button class="edit"><i class="material-icons blue-text" title="EDIT">create</i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="figure grid-three">
+                                                        <p>Total Downloads</p>
+                                                        <div class="cs-edit-input ">
+                                                            <mat-form-field class="example-full-width">
+                                                                <input matInput type="text" readonly="" value="{{formm.total_downloads}}">
+                                                            </mat-form-field>
+                                                            <div class="edit-icon">
+                                                                <button mat-button class="save"><i class="material-icons green-text" title="EDIT">save</i></button>
+                                                                <button mat-button class="edit"><i class="material-icons blue-text" title="EDIT">create</i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="figure grid-three">
+                                                        <p>Total Size</p>
+                                                        <div class="cs-edit-input ">
+                                                            <mat-form-field class="example-full-width">
+                                                                <input matInput type="text" readonly="" value="{{formm.size}}">
+                                                            </mat-form-field>
+                                                            <div class="edit-icon">
+                                                                <button mat-button class="save"><i class="material-icons green-text" title="EDIT">save</i></button>
+                                                                <button mat-button class="edit"><i class="material-icons blue-text" title="EDIT">create</i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="figures grid-threes">
+                                                        <p>Status</p>
+                                                        <div class="cs-edit-inputs ">
+                                                            {{formm.status == '0' ? 'Approved' : 'Pending' }}
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <h6  *ngIf="db.datauser.download_document == '1' && db.datauser.toady_download_request  == '1' " style="text-align: right; font-size: 15px; padding-bottom: 4px;"> Approval Pending</h6>
+                                        <div class="cs-table left-right-15">
+                                            
+                                            
+                                            
+                                            
+                                            <div class="header sticky-header">
+                                                <table class="sno-border">
+                                                    <tr>
+                                                        <th class="w30">&nbsp;</th>
+                                                        <th >File Name</th>
+                                                        <th *ngIf="db.datauser.access_level == '1' ">Total Download</th>
+                                                        <th >User Download</th>
+                                                        <th >Today User Download</th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="table-container">
+                                                <div class="table-body bx-remove">
+                                                    <table class="sno-border">
+                                                        <tr *ngFor="let val of docs;let i=index">
+                                                            <td class="w30">{{i+1}} </td>
+                                                            <td >{{val.doc_name}} </td>
+                                                            <td  *ngIf="db.datauser.access_level == '1'" class="text-center"><span class="color-1">{{val.total_downloads }}</span> </td>
+                                                            <td class="text-center"><span class="color-2">{{val.user_downloads }}</span> </td>
+                                                            <td class="text-center" ><span class="color-3">{{val.today_dwnlod }}</span>                                                  
+                                                                <div class="action-btns">
+                                                                    <div class="outer">
+                                                                        <div class="innear">
+                                                                            <a mat-button class="edit" (click)="download(val.id,val.kid, val.files)" *ngIf="formm.status == '0' && db.datauser.download_document == '1' && db.datauser.free_download > '0' "><i class="material-icons">cloud_download</i> Download </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <div class="col-4">
+                            
+                            <div class="contsts">
+                                <div class="cs-heading">
+                                    <h2>Add Tags</h2>
+                                </div>
+                                
+                                <div class="form-field mb16" style="margin-top: -16px;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="control-field col-12 pr70 edit-input">
+                                                <mat-form-field class="example-full-width cs-input">
+                                                    <input class="bg-color" matInput placeholder="Enter Category Name">
+                                                </mat-form-field>
+                                                
+                                                <div class="plus-btn">
+                                                    <button mat-raised-button color="warn">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <mat-chip-list >
+                                    <mat-chip *ngFor="let searchTag of searchTag;">{{searchTag}}</mat-chip>
+                                </mat-chip-list>
+                                <!-- <mat-chip-list  >
+                                    <mat-chip >
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list> -->
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        
+                        <!-- 
+                            <div class="col-6">
+                                <div class="cs-table left-right-15 ml0">
+                                    <div class="header sticky-header">
+                                        <table class="sno-border">
+                                            <tr>
+                                                <th class="w30">&nbsp;</th>
+                                                <th class="w130">Date</th>
+                                                <th>Customer Name</th>
+                                                <th>File Name</th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="table-container">
+                                        <div class="table-body">
+                                            <table class="sno-border">
+                                                <tr *ngFor="let v of name;let i=index">
+                                                    <td class="w30">{{i+1}} </td>
+                                                    <td class="w130">{{v.date_created |  date:'dd-MMM-y'}} </td>
+                                                    <td>{{v.name}} </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="h100"></div>
+            

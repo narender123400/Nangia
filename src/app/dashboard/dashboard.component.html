@@ -1,0 +1,272 @@
+
+<div class="loader" *ngIf="loader">
+    <div class="outer">
+        <div class="innear">
+            <div class="logo-loading">
+                <span class="circle-one"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-container">
+    <div class="all-container padding0">
+        <div class="cs-row">
+            <div class="right-data padding15">
+                
+                <div class="row">
+                    <div class="col-3 pr8">
+                        
+                        
+                        <div class="side-content">
+                            <div class="heading">
+                                News Room
+                            </div>
+                            <div class="data-note" hidden="">
+                                <p>Date Note Available</p>
+                            </div>
+                            <div class="data-item">
+                                <ul class="news-content">
+                                    <li *ngFor="let val of dashboard_data.news_romms;let i = index;" >
+                                        <div class="img-content">
+                                            <img src="{{db.myurl}}/uploads/{{val.profile_img}}">
+                                        </div>
+                                        <div class="text-content">
+                                            <span>{{val.date_created   | date:'dd MMM y'}}</span>
+                                            <p>{{val.desc}} </p>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                                <a class="fix-btn" routerLink="/news-lisit" routerLinkActive="active">View All  </a>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="col-9">
+                        <div class="dashboard-counter">
+                            <div class="ds-count" style="background: #0063e5;">
+                                
+                                <div class="right-select">
+                                    <button mat-button class="cdbtn" [matMenuTriggerFor]="menu1">{{ ( filter.total_docs == '') ? 'Filter': filter.total_docs }}  </button>
+                                    <mat-menu #menu1="matMenu">
+                                        <button mat-menu-item (click)="filter.total_docs= '' ;dashboard()" >None</button>
+                                        <button mat-menu-item (click)="filter.total_docs= 'today' ;dashboard()" >Today</button>
+                                        <button mat-menu-item (click)="filter.total_docs= 'week' ;dashboard()" >Week</button>
+                                        <button mat-menu-item (click)="filter.total_docs= 'current month' ;dashboard()" >Current Month</button>
+                                        <button mat-menu-item (click)="filter.total_docs= 'last month' ;dashboard()" >Last Month</button>
+                                        <button mat-menu-item (click)="filter.total_docs= 'current year' ;dashboard()" >Current Year</button>
+                                        
+                                        <button mat-menu-item>
+                                            <mat-form-field>
+                                                <input matInput [matDatepicker]="picker3" [(ngModel)]="filter.total_docs" (dateChange)="dashboard()" placeholder="Choose a date">
+                                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker3></mat-datepicker>
+                                            </mat-form-field>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                                <p>Upload Document</p>
+                                <ul>
+                                    <li>{{dashboard_data.total_docs}}</li>
+                                    <li>{{dashboard_data.total_pending_docs}}</li>
+                                    <li>{{dashboard_data.total_reject_docs}}</li>
+                                </ul>
+                                <a class="next-content"><i class="material-icons">chevron_right</i></a>
+                            </div>
+                            
+                            <div class="ds-count" style="background: #ff9104;">
+                                <div class="right-select">
+                                    <button mat-button class="cdbtn" [matMenuTriggerFor]="menu5">{{ ( filter.total_doc_downloads == '') ? 'Filter': filter.total_doc_downloads }}  </button>
+                                    <mat-menu #menu5="matMenu">
+                                        <button mat-menu-item (click)="filter.total_doc_downloads= '' ;dashboard()" >None</button>
+                                        <button mat-menu-item (click)="filter.total_doc_downloads= 'today' ;dashboard()" >Today</button>
+                                        <button mat-menu-item (click)="filter.total_doc_downloads= 'week' ;dashboard()" >Week</button>
+                                        <button mat-menu-item (click)="filter.total_doc_downloads= 'current month' ;dashboard()" >Current Month</button>
+                                        <button mat-menu-item (click)="filter.total_doc_downloads= 'last month' ;dashboard()" >Last Month</button>
+                                        <button mat-menu-item (click)="filter.total_doc_downloads= 'current year' ;dashboard()" >Current Year</button>
+                                        
+                                        <button mat-menu-item>
+                                            <mat-form-field>
+                                                <input matInput [matDatepicker]="picker5" [(ngModel)]="filter.total_doc_downloads" (dateChange)="dashboard()" placeholder="Choose a date">
+                                                <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker5></mat-datepicker>
+                                            </mat-form-field>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                                
+                                <p>Download Document</p>
+                                <ul>
+                                    <li>{{ dashboard_data.total_doc_downloads || 0}}</li>
+                                </ul>
+                                <a class="next-content"><i class="material-icons">chevron_right</i></a>
+                            </div>
+                            
+                            <div class="ds-count" style="background: #fe0000;" *ngIf="db.datauser.access_level == '1' ">
+                                <p>Total Partners</p>
+                                <ul>
+                                    <li>{{dashboard_data.total_approver}}</li>
+                                </ul>
+                                <a class="next-content"><i class="material-icons">chevron_right</i></a>
+                            </div>
+                            
+                            <div class="ds-count" style="background: #00811a;" *ngIf="db.datauser.access_level == '1' || db.datauser.access_level == '3' ">
+                                <p>Total Users</p>
+                                <ul>
+                                    <li>{{dashboard_data.total_users}}</li>
+                                </ul>
+                                <a class="next-content"><i class="material-icons">chevron_right</i></a>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="full-width-content graph mt15 box-pt ">
+                            <div class="right-select">
+                                <button mat-button class="cdbtn" [matMenuTriggerFor]="menu2">{{ ( filter.top_doc_download == '') ? 'Filter': filter.top_doc_download }}  </button>
+                                <mat-menu #menu2="matMenu">
+                                    <button mat-menu-item (click)="filter.top_doc_download= '' ;dashboard()" >None</button>
+                                    <button mat-menu-item (click)="filter.top_doc_download= 'today' ;dashboard()" >Today</button>
+                                    <button mat-menu-item (click)="filter.top_doc_download= 'week' ;dashboard()" >Week</button>
+                                    <button mat-menu-item (click)="filter.top_doc_download= 'current month' ;dashboard()" >Current Month</button>
+                                    <button mat-menu-item (click)="filter.top_doc_download= 'last month' ;dashboard()" >Last Month</button>
+                                    <button mat-menu-item (click)="filter.top_doc_download= 'current year' ;dashboard()" >Current Year </button>
+                                    
+                                    <button mat-menu-item>
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="picker2" [(ngModel)]="filter.top_doc_download" (dateChange)="dashboard()"   placeholder="Choose a date">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                            
+                            <div id="chartContainer" style="width: 100%; height: 400px;"></div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="row mt16">
+                    <div class="col-3 pr8" *ngIf="db.datauser.access_level !=  '2' ">
+                        <div class="side-content">
+                            <div class="heading">
+                                Top Download Users
+                                <div class="right-select">
+                                    <button mat-button class="cdbtn" [matMenuTriggerFor]="menu3">{{ ( filter.top_user_download == '') ? 'Filter': filter.top_user_download }}  </button>
+                                    <mat-menu #menu3="matMenu">
+                                        <button mat-menu-item (click)="filter.top_user_download= '' ;  dashboard()" >None</button>
+                                        <button mat-menu-item (click)="filter.top_user_download= 'today' ;  dashboard()" >Today</button>
+                                        <button mat-menu-item (click)="filter.top_user_download= 'week' ; dashboard()" >Week</button>
+                                        <button mat-menu-item (click)="filter.top_user_download= 'current month' ;  dashboard()" >Current Month</button>
+                                        <button mat-menu-item (click)="filter.top_user_download= 'last month' ;  dashboard()" >Last Month</button>
+                                        <button mat-menu-item (click)="filter.top_user_download= 'current year' ;  dashboard()" >Current Year</button>
+                                        
+                                        <button mat-menu-item>
+                                            <mat-form-field>
+                                                <input matInput [matDatepicker]="picker1" [(ngModel)]="filter.top_user_download" (dateChange)="dashboard()"  placeholder="Choose a date">
+                                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker1></mat-datepicker>
+                                            </mat-form-field>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                                
+                                <!-- <div class="right-select">
+                                    <select name="top_user_download" [(ngModel)]="filter.top_user_download" (change)="dashboard()" >
+                                        <option value="">None</option>
+                                        <option value="today">Today</option>
+                                        <option value="week">Week</option>
+                                        <option value="last month">Last Month</option>
+                                        <option value="current month">Current Month</option>
+                                        <option value="current year">Current Year</option>
+                                    </select>
+                                </div> -->
+                            </div>
+                            
+                            <div class="data-item">
+                                <ul class="ds-hover">
+                                    <li   routerLink="/my-download/{{val.id}}" routerLinkActive="active"   *ngFor="let val of dashboard_data.top_user_download;let i = index;" >
+                                        {{val.name}}
+                                        <span class="ds-counter">{{ val.total_downloads  }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9 pl8">
+                        <div class="full-width-content">
+                            <div class="side-content wp100">
+                                <div class="heading">
+                                    {{ db.datauser.access_level !=  '2' ? 'Top User Upload Documents' : 'Last 15 Upload Documents BY You' }}
+                                    <div class="right-select" *ngIf="db.datauser.access_level !=  '2' ">
+                                        <button mat-button class="cdbtn" [matMenuTriggerFor]="menu4">{{ ( filter.user_upload_date == '') ? 'Filter': filter.user_upload_date }}  </button>
+                                        <mat-menu #menu4="matMenu">
+                                            <button mat-menu-item (click)="filter.user_upload_date= '' ;  dashboard()" >None</button>
+                                            <button mat-menu-item (click)="filter.user_upload_date= 'today' ;  dashboard()" >Today</button>
+                                            <button mat-menu-item (click)="filter.user_upload_date= 'week' ; dashboard()" >Week</button>
+                                            <button mat-menu-item (click)="filter.user_upload_date= 'current month' ;  dashboard()" >Current Month</button>
+                                            <button mat-menu-item (click)="filter.user_upload_date= 'last month' ;  dashboard()" >Last Month</button>
+                                            <button mat-menu-item (click)="filter.user_upload_date= 'current year' ;  dashboard()" >Current Year</button>
+                                            
+                                            <button mat-menu-item>
+                                                <mat-form-field>
+                                                    <input matInput [matDatepicker]="picker1" [(ngModel)]="filter.user_upload_date" (dateChange)="dashboard()"  placeholder="Choose a date">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker1></mat-datepicker>
+                                                </mat-form-field>
+                                            </button>
+                                        </mat-menu>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="ds-flex">
+                                    <div class="data-item" *ngIf="db.datauser.access_level !=  '2' ">
+                                        <ul class="ds-hover">
+                                            <li *ngFor="let val of dashboard_data.top_user_upload;let i = index;" (click)="getUserDocs(val.user_id)" [ngClass]="{'active' : (val.user_id == user_id) }" >{{val.name}} <span class="ds-counter">{{val.user_doc_upload}}</span></li>
+                                            
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="full-width">
+                                        <div class="cs-table">
+                                            <div class="header sticky-header">
+                                                <table class="sno-border">
+                                                    <tr>
+                                                        <th class="w30">&nbsp;</th>
+                                                        <th class="w100">Upload Date</th>
+                                                        <th>Document Name</th>
+                                                        <th class="w100">Downloads</th>
+                                                        <th class="w100">Status</th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            
+                                            <div class="table-container">
+                                                <div class="table-body">
+                                                    <table class="sno-border">
+                                                        <tr  *ngFor="let val of user_docs;let i = index;" >
+                                                            <td class="w30">{{ i+1 }}</td>
+                                                            <td class="w100">{{val.date_created   | date:'dd MMM y' }}</td>
+                                                            <td> <a routerLink="/knowledge-detail/{{val.id}}" routerLinkActive="active"> {{val.subject}} </a></td>
+                                                            <td class="w100">{{ val.total_downloads }}</td>
+                                                            <td class="w100">{{val.status == '1' ? 'Pending' : ( val.status == '2' ? 'Reject' : 'Approved' ) }}</td>
+                                                        </tr>
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h100"></div>
+    

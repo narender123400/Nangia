@@ -1,0 +1,75 @@
+.pass-container 
+{
+    padding: 10px 15px 15px 15px;
+}
+
+
+.profile
+{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .profile-img
+    {
+        
+        
+        img
+        {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+        
+        .change-img
+        {
+            
+            label
+            {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background: #2196f3;
+                cursor: pointer;
+                border-radius: 4px;
+
+                
+                p
+                {
+                    color: #fff;
+                    text-align: center;
+                }
+            }
+            
+        }
+        
+    }
+    
+}
+
+
+
+
+
+.btn-con
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    .save-bn
+    {
+        button
+        {
+            background: #2196f3;
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            padding: 6px 30px;
+            border-radius: 3px;
+            cursor: pointer;
+            
+        }
+    }
+}

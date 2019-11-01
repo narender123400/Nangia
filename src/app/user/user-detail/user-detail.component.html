@@ -1,0 +1,100 @@
+<div class="main-container">
+  <div class="master-heading bcspace">
+    <div class="back-btn">
+      <a mat-button routerLink="/user-list" routerLinkActive="active"><i class="material-icons">arrow_right_alt</i></a>
+    </div>
+    <div class="vl-info">
+      <ul>
+        <li><p class="af-none">{{form.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cs-container ">
+      <div class="cs-row">
+        <div class="right-data pr20">
+          <div class="contst">
+            <div class="cs-heading">
+              <h2>Add User</h2>
+            </div>
+            
+            <div class="cs-divider pt10">
+              <mat-divider></mat-divider>
+            </div>
+            <div class="user-deatils pt10">
+              <div class="row">
+                <div class="col-6 pr10">
+                  <div class="detail-thumnail right-border">
+                    <table>
+                      <tr>
+                        <th class="w200">ID</th>
+                        <td class="w100 text-center">:</td>
+                        <td>{{form.id}}</td>
+                      </tr>
+                      <tr>
+                        <th>Deparment</th>
+                        <td class="text-center">:</td>
+                        <td>{{form.name}}</td>
+                      </tr>
+                      <tr>
+                        <th>Email ID</th>
+                        <td class="text-center">:</td>
+                        <td>{{form.email}}</td>
+                      </tr>
+                      <tr>
+                        <th>Mobile</th>
+                        <td class="text-center">:</td>
+                        <td>{{form.mobile}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-6 pl10">
+                    <div class="detail-thumnail">
+                        <table>
+                          <tr>
+                            <th class="w200">Landline No.</th>
+                            <td class="w100 text-center">:</td>
+                            <td>{{form.landline}}</td>
+                          </tr>
+                          <tr>
+                            <th>Extension</th>
+                            <td class="text-center">:</td>
+                            <td>{{form.extension}}</td>
+                          </tr>
+           
+                        </table>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contst mt20">
+            <div class="cs-heading">
+              <h2>Document Rights</h2>
+            </div>
+            
+            <div class="cs-divider pt10 pb10">
+              <mat-divider></mat-divider>
+            </div>
+            
+            <div class="row">
+              <div class="col-12">
+                <div class="work-process">
+                    <section class="example-section">
+                  
+                        <mat-checkbox  class="example-margin" #add_document="ngModel" [(ngModel)]="form.add_document" color="warn">ADD DOCUMENT</mat-checkbox>
+                        <mat-checkbox class="example-margin" #edit_document="ngModel" [(ngModel)]="form.edit_document"  color="warn">EDIT DOCUMENT</mat-checkbox>
+                        <mat-checkbox class="example-margin" #delete_document="ngModel" [(ngModel)]="form.delete_document"  color="warn">DELETE DOCUMENT</mat-checkbox>
+                        <mat-checkbox  class="example-margin" #download_document="ngModel" [(ngModel)]="form.download_document" color="warn">DOWNLOAD DOCUMENT</mat-checkbox>
+                        <mat-checkbox class="example-margin" #view_document="ngModel" [(ngModel)]="form.view_document"  color="warn">VIEW DOCUMENT</mat-checkbox>
+                      </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="h100"></div>

@@ -1,0 +1,57 @@
+<div class="login">
+  <div class="row">
+      <div class="col-8">
+          <div class="left">
+              <div class="outer">
+                  <div class="innear">
+                      <div class="zoominscreen">
+                          <div class="zoomoutscreen">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-4 grbg">
+          <div class="right">
+              
+              <div class="logo">
+                  <img src="assets/img/Company_logo.png" alt="">
+              </div>
+              
+              <h1>Log <span>In</span></h1>
+               <form  [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="form">
+                  <div class="control-field">
+                      <label>USERNAME</label>
+                      <mat-form-field>
+                          <input matInput formControlName="username">
+                          <i class="material-icons input-icon">person</i>
+                      </mat-form-field>
+                      <mat-error *ngIf="submitted && f.username.errors" >Username is required</mat-error>
+                  </div>
+                  
+                  <div class="control-field">
+                      <label>PASSWORD {{db.token}}</label>
+                      <mat-form-field>
+                          <input matInput type="password" formControlName="password"  type="password">
+                          <!-- <i class="material-icons input-icon">vpn_key</i>
+                          <i class="material-icons pass-show" (click)="hide = !hide">remove_red_eye</i> -->
+                      </mat-form-field>
+                      <mat-error *ngIf="submitted && f.password.errors">Password is required</mat-error>
+                  </div>
+                  <div class="ul-clear"></div>
+                  <div class="cs-btn full-width mt20">
+                      <div class="in-btn">
+                          <button mat-raised-button type="submit" color="warn" class="h50">Log in</button>
+                      </div>
+                  </div>
+              </div>
+            </form>
+              <!-- <footer>
+                  <span>Powered by Abacusdesk</span>
+              </footer> -->
+          </div>
+      </div>
+  </div>
+</div>
